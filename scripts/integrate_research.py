@@ -20,8 +20,8 @@ def main():
  cs=json.loads((ROOT/'plans/chapters.json').read_text());lines=['# 機能と章の対応','']
  for c in cs:
   ids=[f['feature_id'] for f in fs if str(c['number']) in split(f['related_chapter'])];c['feature_ids']=ids
-  if c['number']>=49:c['reused_feature_ids']=[f['feature_id'] for f in fs if (c['number']==49 and any(int(n)<36 for n in split(f['related_chapter']))) or (c['number']==50 and any(int(n)>=22 for n in split(f['related_chapter'])))]
-  lines += [f'## 第{c["number"]}章 {c["title"]}', '',f'[学習設計](detailed-toc.md#ch-{c["number"]:02})','',', '.join(ids) or '総合演習：既存機能を再利用（chapters.json参照）。','']
+  if c['number'] in (12,28,49,50):c['reused_feature_ids']=[f['feature_id'] for f in fs if (c['number']==12 and f['category'] in ('Repositories','Actions','Security')) or (c['number']==28 and f['category']=='Security') or (c['number']==49 and any(int(n)<36 for n in split(f['related_chapter']))) or (c['number']==50 and any(int(n)>=22 for n in split(f['related_chapter'])))]
+  lines += [f'<a id="ch-{c["number"]:02}"></a>', '',f'## 第{c["number"]}章 {c["title"]}', '',f'[学習設計](detailed-toc.md#ch-{c["number"]:02})','',', '.join(ids) or '総覧・総合演習：既存機能を再利用（chapters.json参照）。','']
  (ROOT/'plans/chapters.json').write_text(json.dumps(cs,ensure_ascii=False,indent=2)+'\n')
  (ROOT/'plans/feature-chapter-map.md').write_text('\n'.join(lines))
  m={'reference_date':'2026-10-26','checked_on':'2026-11-14','features':len(fs),'sources':len(ss),'unique_urls':len({s['url'].rstrip('/') for s in ss}),'source_states':dict(Counter(s['verification_status'] for s in ss)),'docs_opened':len({s['url'].rstrip('/') for s in ss if s['source_type']=='Docs' and s['verification_status']=='opened'}),'categories':dict(Counter(f['category'] for f in fs)),'ui_verified':sum(f['ui_verification_status']=='verified' for f in fs),'practical_verified':sum(f['practical_verification_status']=='verified' for f in fs),'parts':12,'chapters':len(cs)}
