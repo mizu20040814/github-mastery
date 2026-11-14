@@ -1,0 +1,29 @@
+{
+  "checked_at_utc": "2026-11-14T08:20:40.947056+00:00",
+  "scope": "MkDocs教材サイトのみ。GitHub.comのUI・実践演習は未検証。",
+  "browser": "154.0.8037.57",
+  "checks": [
+    {
+      "name": "desktop_home",
+      "status": "failed",
+      "detail": ""
+    },
+    {
+      "name": "mermaid_svg",
+      "status": "failed",
+      "detail": "Page.wait_for_function: Timeout 15000ms exceeded."
+    },
+    {
+      "name": "japanese_search",
+      "status": "failed",
+      "detail": "Locator.wait_for: Timeout 20000ms exceeded.\nCall log:\n  - waiting for locator(\".md-search-result__item\").first to be visible\n"
+    },
+    {
+      "name": "mobile_menu",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "failed_requests": [],
+  "limitations": "単一Chromium、1440px/390pxのsmoke確認。全端末・全検索語・アクセシビリティ適合は未確認。"
+}

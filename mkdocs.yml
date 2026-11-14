@@ -42,6 +42,19 @@ nav:
       - 全体計画: plans/master-plan.md
       - 詳細目次: plans/detailed-toc.md
       - 章別制作計画: plans/chapter-production-plan.md
+  - 教材の部構成:
+      - 第1部 基礎とWebサイト: docs/01-foundations/index.md
+      - 第2部 アカウント・認証・料金: docs/02-account/index.md
+      - 第3部 Repository: docs/03-repositories/index.md
+      - 第4部 共同開発: docs/04-collaboration/index.md
+      - 第5部 ActionsとCI/CD: docs/05-actions/index.md
+      - 第6部 Security: docs/06-security/index.md
+      - 第7部 配布と開発環境: docs/07-distribution/index.md
+      - 第8部 CopilotとAI: docs/08-ai/index.md
+      - 第9部 API・CLI・連携: docs/09-integrations/index.md
+      - 第10部 Organization・Enterprise: docs/10-enterprise/index.md
+      - 第11部 OSSと周辺機能: docs/11-community/index.md
+      - 第12部 総合演習: docs/12-practice/index.md
   - 調査:
       - 範囲: research/SCOPE.md
       - 品質基準: research/QUALITY_STANDARDS.md

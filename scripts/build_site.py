@@ -34,7 +34,12 @@ def stage():
             identifier=row[key]
             lines += [f'## {identifier} {{#{identifier.lower()}}}','','| 項目 | 内容 |','|---|---|']
             for k,v in row.items():
-                v=html.escape(v or '（記録なし）').replace('|','&#124;').replace('\n','<br>')
+                raw=v or '（記録なし）'
+                v=html.escape(raw).replace('|','&#124;').replace('\n','<br>')
+                if raw.startswith('https://') and ' ' not in raw: v=f'<{raw}>'
+                elif k=='source_ids': v='; '.join(f'[{x}](source-catalog.md#{x.lower()})' for x in raw.split(';') if x)
+                elif k=='related_features' and raw!='（記録なし）': v='; '.join(f'[{x}](feature-inventory.md#{x.lower()})' for x in raw.split(';') if x)
+                elif k=='related_chapter': v='; '.join(f'[第{x}章](../plans/detailed-toc.md#ch-{int(x):02})' for x in raw.split(';') if x.isdigit())
                 lines.append(f'| {k} | {v} |')
             lines.append('')
         path.with_suffix('.md').write_text('\n'.join(lines)+'\n')
