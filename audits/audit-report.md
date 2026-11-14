@@ -17,3 +17,6 @@ main向けPRは比較元mainが存在しないため保留。main初期化push�
 MkDocs strict buildは警告0で成功。CSV/ID/出典/章参照/内部リンク検証成功。日本語検索・Mermaid描画・1440px表示・390pxメニューの4項目はChromiumで成功し、通信失敗/JavaScriptエラー0。pip checkとPython構文も成功。
 GitHub Actionsの[実行43575438955](https://github.com/mizu20040814/github-mastery/actions/runs/43575438955)はcommit e16d15fでsuccessを確認。途中保存の不完全な構成で発生した先行run失敗は統合後に解消した。
 公開は未実施。成果物はcodex/phase-0-2-foundationへpush済み。main比較元の作成は承認待ち。
+
+## GitHub成果物の更新
+ユーザー承認を受け、空の基点f13121bからmainを作成。ドラフトPR: https://github.com/mizu20040814/github-mastery/pull/1 。mainへの教材変更のマージとサイト公開は未実施。上記の承認待ち・比較元不在の記録は、この更新前の状態を示す。

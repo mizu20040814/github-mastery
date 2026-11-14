@@ -8,3 +8,6 @@ Phase0-2の基盤/選定Docs調査/章設計を復元中。全Docs巡回・認�
 
 ## 復元完了
 234機能・99出典（91本文確認、8取得不可）を統合。12部50章、150節300小節の設計と制作計画を保存。strict build/台帳・内部リンク/ブラウザ4項目/Actions runner検証は成功。全Docs巡回と認証付きUI・実践は未完了。次回プロンプトはnext-task-prompt.md。
+
+## PR作成
+ユーザーが空の基点からmainを初期化する操作を承認。mainをf13121bed95db6181b262983cac043dc7058ac8aに作成し、ドラフトPR https://github.com/mizu20040814/github-mastery/pull/1 を作成した。マージ・サイト公開は未実施。
