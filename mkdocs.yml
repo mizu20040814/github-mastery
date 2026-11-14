@@ -1,0 +1,60 @@
+site_name: GitHub完全習得プロジェクト
+site_description: GitHub.comの日本語教材の調査・設計基盤
+docs_dir: .build/docs
+site_dir: site
+strict: true
+theme:
+  name: material
+  language: ja
+  custom_dir: overrides
+  font: false
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+plugins:
+  - search:
+      lang: [ja, en]
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+validation:
+  nav:
+    omitted_files: info
+  links:
+    not_found: warn
+    anchors: warn
+nav:
+  - はじめに: index.md
+  - 制作計画:
+      - 全体計画: plans/master-plan.md
+      - 詳細目次: plans/detailed-toc.md
+      - 章別制作計画: plans/chapter-production-plan.md
+  - 調査:
+      - 範囲: research/SCOPE.md
+      - 品質基準: research/QUALITY_STANDARDS.md
+      - Docs分類: research/docs-taxonomy.md
+      - 機能台帳: research/feature-inventory.md
+      - 出典台帳: research/source-catalog.md
+      - UI Map: research/ui-map.md
+      - 変更追跡: research/changelog-tracker.md
+      - 残課題: research/research-gaps.md
+  - 演習・事例:
+      - Lab A〜E: labs/README.md
+      - 企業事例: case-studies/README.md
+      - 理解度テスト: quizzes/README.md
+  - 検証:
+      - 監査: audits/audit-report.md
+      - サイト検証: audits/site-build.md
