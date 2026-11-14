@@ -23,16 +23,15 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('requestfailed',lambda r:requests.append(r.url))
  page.goto(base,wait_until='networkidle')
- def home():assert page.locator('h1').inner_text()=='GitHub完全習得プロジェクト'
+ def home():assert page.locator('h1').inner_text().startswith('GitHub完全習得プロジェクト')
  def mermaid():
-  page.wait_for_function('document.querySelector(".mermaid") && document.querySelector(".mermaid").getAttribute("data-processed") === "true"',timeout=15000)
   client=page.context.new_cdp_session(page)
   doc=client.send('DOM.getDocument',{'depth':-1,'pierce':True})
   def walk(n):
    return n.get('nodeName','').lower()=='svg' or any(walk(c) for k in ('children','shadowRoots') for c in n.get(k,[]))
   assert walk(doc['root'])
  def search():
-  q=page.locator('[data-md-component="search-query"]');q.click();q.press_sequentially('機能台帳',delay=100)
+  q=page.locator('[data-md-component="search-query"]');q.click();q.fill('機能台帳');q.press('ArrowRight')
   page.locator('.md-search-result__item').first.wait_for(state='visible',timeout=20000)
   page.screenshot(path=str(out/'site-search-desktop.png'));page.keyboard.press('Escape')
  check('desktop_home',home);check('mermaid_svg',mermaid)

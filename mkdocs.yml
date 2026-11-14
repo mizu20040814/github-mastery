@@ -42,6 +42,9 @@ nav:
       - 全体計画: plans/master-plan.md
       - 詳細目次: plans/detailed-toc.md
       - 章別制作計画: plans/chapter-production-plan.md
+      - 機能と章の対応: plans/feature-chapter-map.md
+      - 進捗: plans/STATUS.md
+      - 次回プロンプト: plans/next-task-prompt.md
   - 教材の部構成:
       - 第1部 基礎とWebサイト: docs/01-foundations/index.md
       - 第2部 アカウント・認証・料金: docs/02-account/index.md

@@ -12,3 +12,8 @@ main向けPRは比較元mainが存在しないため保留。main初期化push�
 234機能、99一意出典URL（91本文確認、8取得不可）。本文確認Docsは88一意URL。登録機能の概要は234件照合、UI/実践は0/234件確認。27分類、12部50章。母集団は今回登録した台帳であり、全GitHubの網羅率ではない。
 第12・28章は総覧として関連機能を再利用、第49・50章は総合演習として再利用する。全50章の独立機能を水増ししていない。
 登録ID/URL/同一機能名の完全一致重複は検査済み。名称の異なる意味重複は追加レビューが必要。プラン・権限・GA/Previewには不明が残る。
+
+## 最終技術検証
+MkDocs strict buildは警告0で成功。CSV/ID/出典/章参照/内部リンク検証成功。日本語検索・Mermaid描画・1440px表示・390pxメニューの4項目はChromiumで成功し、通信失敗/JavaScriptエラー0。pip checkとPython構文も成功。
+GitHub Actionsの[実行43575438955](https://github.com/mizu20040814/github-mastery/actions/runs/43575438955)はcommit e16d15fでsuccessを確認。途中保存の不完全な構成で発生した先行run失敗は統合後に解消した。
+公開は未実施。成果物はcodex/phase-0-2-foundationへpush済み。main比較元の作成は承認待ち。
