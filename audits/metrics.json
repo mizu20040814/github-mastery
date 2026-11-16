@@ -1,7 +1,7 @@
 {
   "reference_date": "2026-10-26",
   "checked_on": "2026-11-14",
-  "features": 234,
+  "features": 233,
   "sources": 99,
   "unique_urls": 99,
   "source_states": {
@@ -19,7 +19,7 @@
     "Enterprise": 7,
     "Issues": 11,
     "Projects": 13,
-    "Pull requests": 11,
+    "Pull requests": 10,
     "Discussions": 5,
     "Developer tools": 1,
     "API": 4,

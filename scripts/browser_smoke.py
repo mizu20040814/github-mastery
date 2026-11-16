@@ -27,9 +27,19 @@ with sync_playwright() as p:
  def mermaid():
   client=page.context.new_cdp_session(page)
   doc=client.send('DOM.getDocument',{'depth':-1,'pierce':True})
-  def walk(n):
-   return n.get('nodeName','').lower()=='svg' or any(walk(c) for k in ('children','shadowRoots') for c in n.get(k,[]))
-  assert walk(doc['root'])
+  def nodes(n):
+   yield n
+   for k in ('children','shadowRoots'):
+    for child in n.get(k,[]): yield from nodes(child)
+  diagrams=[]
+  for n in nodes(doc['root']):
+   attrs=dict(zip(n.get('attributes',[])[::2],n.get('attributes',[])[1::2]))
+   if 'mermaid' in attrs.get('class','').split(): diagrams.append(n)
+  assert diagrams, 'Mermaid領域がない'
+  assert any(any(n.get('nodeName','').lower()=='svg' for n in nodes(d)) and
+             all(label in ''.join(n.get('nodeValue','') for n in nodes(d)) for label in ('公式資料','機能台帳','詳細目次'))
+             for d in diagrams), 'Mermaid SVGまたは図のラベルがない'
+
  def search():
   q=page.locator('[data-md-component="search-query"]');q.click();q.fill('機能台帳');q.press('ArrowRight')
   page.locator('.md-search-result__item').first.wait_for(state='visible',timeout=20000)

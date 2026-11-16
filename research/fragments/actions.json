@@ -525,10 +525,10 @@
       "ui_verification_status": "unverified",
       "practical_verification_status": "unverified",
       "last_verified_date": "2026-11-14",
-      "related_chapter": "23",
+      "related_chapter": "19;23",
       "related_features": "",
-      "notes": "概要を確認。全設定・料金・権限・上限と基準日時点の提供状態は追加調査が必要。",
-      "source_ids": "SRC-ACT-003"
+      "notes": "概要を確認。全設定・料金・権限・上限と基準日時点の提供状態は追加調査が必要。 GH-COL-032は同一機能のためこのIDへ統合（2026-11-16）。",
+      "source_ids": "SRC-ACT-003;SRC-COL-008"
     },
     {
       "feature_id": "GH-ACT-013",
