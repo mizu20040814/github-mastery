@@ -1,0 +1,76 @@
+site_name: GitHub完全習得プロジェクト
+site_description: GitHub.comの日本語教材の調査・設計基盤
+docs_dir: .build/docs
+site_dir: site
+strict: true
+theme:
+  name: material
+  language: ja
+  custom_dir: overrides
+  font: false
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+plugins:
+  - search:
+      lang: [ja, en]
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+validation:
+  nav:
+    omitted_files: info
+  links:
+    not_found: warn
+    anchors: warn
+nav:
+  - はじめに: index.md
+  - 制作計画:
+      - 全体計画: plans/master-plan.md
+      - 詳細目次: plans/detailed-toc.md
+      - 章別制作計画: plans/chapter-production-plan.md
+      - 機能と章の対応: plans/feature-chapter-map.md
+      - 進捗: plans/STATUS.md
+      - 次回プロンプト: plans/next-task-prompt.md
+  - 教材の部構成:
+      - 第1部 基礎とWebサイト: docs/01-foundations/index.md
+      - 第2部 アカウント・認証・料金: docs/02-account/index.md
+      - 第3部 Repository: docs/03-repositories/index.md
+      - 第4部 共同開発: docs/04-collaboration/index.md
+      - 第5部 ActionsとCI/CD: docs/05-actions/index.md
+      - 第6部 Security: docs/06-security/index.md
+      - 第7部 配布と開発環境: docs/07-distribution/index.md
+      - 第8部 CopilotとAI: docs/08-ai/index.md
+      - 第9部 API・CLI・連携: docs/09-integrations/index.md
+      - 第10部 Organization・Enterprise: docs/10-enterprise/index.md
+      - 第11部 OSSと周辺機能: docs/11-community/index.md
+      - 第12部 総合演習: docs/12-practice/index.md
+  - 調査:
+      - 範囲: research/SCOPE.md
+      - 品質基準: research/QUALITY_STANDARDS.md
+      - Docs分類: research/docs-taxonomy.md
+      - 機能台帳: research/feature-inventory.md
+      - 出典台帳: research/source-catalog.md
+      - UI Map: research/ui-map.md
+      - 変更追跡: research/changelog-tracker.md
+      - 残課題: research/research-gaps.md
+  - 演習・事例:
+      - Lab A〜E: labs/README.md
+      - 企業事例: case-studies/README.md
+      - 理解度テスト: quizzes/README.md
+  - 検証:
+      - 監査: audits/audit-report.md
+      - サイト検証: audits/site-build.md

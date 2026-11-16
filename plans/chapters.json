@@ -1,0 +1,2782 @@
+[
+  {
+    "number": 1,
+    "part": 1,
+    "title": "GitとGitHubの仕組み",
+    "prerequisites": [],
+    "objectives": [
+      "Gitの履歴モデルとリモート同期を説明できる"
+    ],
+    "sections": [
+      {
+        "number": "1.1",
+        "title": "分散管理",
+        "subsections": [
+          "GitとGitHub",
+          "ローカルとremote"
+        ]
+      },
+      {
+        "number": "1.2",
+        "title": "データ構造",
+        "subsections": [
+          "blob・tree・commit",
+          "参照・HEAD・index"
+        ]
+      },
+      {
+        "number": "1.3",
+        "title": "履歴操作",
+        "subsections": [
+          "fetch・pull・push",
+          "revert・resetの判断"
+        ]
+      }
+    ],
+    "lab": "A:小さなcommitと参照の移動を図示する",
+    "review": "小さなcommitと参照の移動を図示する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Get started",
+      "Git公式"
+    ],
+    "feature_ids": [
+      "GH-REP-001",
+      "GH-REP-005",
+      "GH-REP-006"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 2,
+    "part": 1,
+    "title": "GitHub.comの全体構造",
+    "prerequisites": [
+      1
+    ],
+    "objectives": [
+      "所有者と管理スコープを区別し必要な画面へ移動できる"
+    ],
+    "sections": [
+      {
+        "number": "2.1",
+        "title": "管理境界",
+        "subsections": [
+          "個人",
+          "Organization・Enterprise"
+        ]
+      },
+      {
+        "number": "2.2",
+        "title": "全体導線",
+        "subsections": [
+          "Dashboard・Feed",
+          "検索・作成メニュー"
+        ]
+      },
+      {
+        "number": "2.3",
+        "title": "製品境界",
+        "subsections": [
+          "GitHub.comとGHES",
+          "Desktop・Mobile・外部サービス"
+        ]
+      }
+    ],
+    "lab": "A:公開閲覧とログイン時の導線を比較する",
+    "review": "公開閲覧とログイン時の導線を比較する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Get started",
+      "Account",
+      "Repositories"
+    ],
+    "feature_ids": [
+      "GH-REP-027",
+      "GH-REP-028",
+      "GH-REP-029"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 3,
+    "part": 1,
+    "title": "GitHubの検索機能",
+    "prerequisites": [
+      2
+    ],
+    "objectives": [
+      "対象と構文を選び検索漏れを説明できる"
+    ],
+    "sections": [
+      {
+        "number": "3.1",
+        "title": "一般検索",
+        "subsections": [
+          "修飾子",
+          "並べ替え・絞込み"
+        ]
+      },
+      {
+        "number": "3.2",
+        "title": "Code Search",
+        "subsections": [
+          "正規表現・symbol",
+          "索引と既定branch"
+        ]
+      },
+      {
+        "number": "3.3",
+        "title": "実務検索",
+        "subsections": [
+          "保存検索",
+          "API検索との違い"
+        ]
+      }
+    ],
+    "lab": "A:既知の対象を使いヒットと非ヒットを説明する",
+    "review": "既知の対象を使いヒットと非ヒットを説明する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Search",
+      "REST Search"
+    ],
+    "feature_ids": [
+      "GH-REP-007",
+      "GH-REP-008"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 4,
+    "part": 1,
+    "title": "GitHubの画面操作と表示",
+    "prerequisites": [
+      2
+    ],
+    "objectives": [
+      "表示設定とアクセシビリティを目的に合わせて使える"
+    ],
+    "sections": [
+      {
+        "number": "4.1",
+        "title": "表示設定",
+        "subsections": [
+          "Appearance",
+          "日時・言語・幅"
+        ]
+      },
+      {
+        "number": "4.2",
+        "title": "入力支援",
+        "subsections": [
+          "ショートカット",
+          "command palette"
+        ]
+      },
+      {
+        "number": "4.3",
+        "title": "文章と操作",
+        "subsections": [
+          "Markdown・添付",
+          "フォーカス・モバイル"
+        ]
+      }
+    ],
+    "lab": "A:キーボードだけでIssueを探し表示差を記録する",
+    "review": "キーボードだけでIssueを探し表示差を記録する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Account",
+      "Accessibility",
+      "Writing"
+    ],
+    "feature_ids": [
+      "GH-REP-046"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 5,
+    "part": 2,
+    "title": "AccountとProfile",
+    "prerequisites": [
+      2
+    ],
+    "objectives": [
+      "個人情報の公開範囲とアカウント運用を設計できる"
+    ],
+    "sections": [
+      {
+        "number": "5.1",
+        "title": "公開プロフィール",
+        "subsections": [
+          "README・pin",
+          "Contributions・Achievements"
+        ]
+      },
+      {
+        "number": "5.2",
+        "title": "識別情報",
+        "subsections": [
+          "username・email",
+          "公開とprivate activity"
+        ]
+      },
+      {
+        "number": "5.3",
+        "title": "ライフサイクル",
+        "subsections": [
+          "rename・export",
+          "閉鎖・継承"
+        ]
+      }
+    ],
+    "lab": "A:本人と公開閲覧のプロフィールを比較する",
+    "review": "本人と公開閲覧のプロフィールを比較する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Account and profile"
+    ],
+    "feature_ids": [
+      "GH-REP-030",
+      "GH-REP-031",
+      "GH-REP-032",
+      "GH-REP-033",
+      "GH-REP-034",
+      "GH-REP-035"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 6,
+    "part": 2,
+    "title": "認証とアカウント保護",
+    "prerequisites": [
+      1,
+      5
+    ],
+    "objectives": [
+      "認証手段と復旧・失効を適切に設計できる"
+    ],
+    "sections": [
+      {
+        "number": "6.1",
+        "title": "ログイン保護",
+        "subsections": [
+          "2FA・passkeys",
+          "recovery codes"
+        ]
+      },
+      {
+        "number": "6.2",
+        "title": "Git認証",
+        "subsections": [
+          "HTTPS・credential helper",
+          "SSH・署名鍵"
+        ]
+      },
+      {
+        "number": "6.3",
+        "title": "認証資源",
+        "subsections": [
+          "PAT・Appsの選択",
+          "session・security log"
+        ]
+      }
+    ],
+    "lab": "A:読取専用認証と失効時の動作を確認する",
+    "review": "読取専用認証と失効時の動作を確認する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Authentication",
+      "Apps"
+    ],
+    "feature_ids": [
+      "GH-REP-036",
+      "GH-REP-037",
+      "GH-REP-038",
+      "GH-REP-039"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 7,
+    "part": 2,
+    "title": "NotificationsとSubscriptions",
+    "prerequisites": [
+      2,
+      5
+    ],
+    "objectives": [
+      "通知原因と受信経路を制御できる"
+    ],
+    "sections": [
+      {
+        "number": "7.1",
+        "title": "通知モデル",
+        "subsections": [
+          "reason・参加",
+          "Watchとsubscription"
+        ]
+      },
+      {
+        "number": "7.2",
+        "title": "受信処理",
+        "subsections": [
+          "Inbox・saved filters",
+          "done・unsubscribe"
+        ]
+      },
+      {
+        "number": "7.3",
+        "title": "配信設計",
+        "subsections": [
+          "メールとWeb",
+          "チームの通知負荷"
+        ]
+      }
+    ],
+    "lab": "B:レビュー依頼とmentionの通知を比較する",
+    "review": "レビュー依頼とmentionの通知を比較する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Subscriptions and notifications"
+    ],
+    "feature_ids": [
+      "GH-REP-010",
+      "GH-REP-011",
+      "GH-REP-012"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 8,
+    "part": 2,
+    "title": "Billingと利用プラン",
+    "prerequisites": [
+      5
+    ],
+    "objectives": [
+      "機能条件と従量費用を分けて判断できる"
+    ],
+    "sections": [
+      {
+        "number": "8.1",
+        "title": "プラン",
+        "subsections": [
+          "Free・Pro",
+          "Team・Enterprise"
+        ]
+      },
+      {
+        "number": "8.2",
+        "title": "利用量",
+        "subsections": [
+          "Actions・storage",
+          "Codespaces・AI"
+        ]
+      },
+      {
+        "number": "8.3",
+        "title": "費用統制",
+        "subsections": [
+          "budget・alerts",
+          "請求役割・cost center"
+        ]
+      }
+    ],
+    "lab": "A:無料枠と従量項目を出典日付きで試算する",
+    "review": "無料枠と従量項目を出典日付きで試算する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Billing",
+      "Plans"
+    ],
+    "feature_ids": [
+      "GH-REP-040",
+      "GH-REP-041"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 9,
+    "part": 3,
+    "title": "Repositoryの作成と管理",
+    "prerequisites": [
+      1,
+      6
+    ],
+    "objectives": [
+      "所有者と可視性に応じてRepositoryを管理できる"
+    ],
+    "sections": [
+      {
+        "number": "9.1",
+        "title": "作成",
+        "subsections": [
+          "空repo・template",
+          "public・private・internal"
+        ]
+      },
+      {
+        "number": "9.2",
+        "title": "派生と移行",
+        "subsections": [
+          "fork・duplicate",
+          "import・transfer"
+        ]
+      },
+      {
+        "number": "9.3",
+        "title": "ライフサイクル",
+        "subsections": [
+          "archive",
+          "delete・restoreの条件"
+        ]
+      }
+    ],
+    "lab": "A:使い捨てRepositoryを作り所有と可視性を説明する",
+    "review": "使い捨てRepositoryを作り所有と可視性を説明する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Repositories",
+      "Migrations"
+    ],
+    "feature_ids": [
+      "GH-REP-042",
+      "GH-REP-043",
+      "GH-REP-044"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 10,
+    "part": 3,
+    "title": "Codeタブの全機能",
+    "prerequisites": [
+      1,
+      9
+    ],
+    "objectives": [
+      "コード閲覧と編集の導線を使い分けられる"
+    ],
+    "sections": [
+      {
+        "number": "10.1",
+        "title": "閲覧",
+        "subsections": [
+          "file tree・Go to file",
+          "README・About"
+        ]
+      },
+      {
+        "number": "10.2",
+        "title": "履歴追跡",
+        "subsections": [
+          "history・blame",
+          "permalink・diff"
+        ]
+      },
+      {
+        "number": "10.3",
+        "title": "変更と取得",
+        "subsections": [
+          "Web edit・upload",
+          "clone・download・web editor"
+        ]
+      }
+    ],
+    "lab": "A:固定commitのpermalinkと変更PRを作成する",
+    "review": "固定commitのpermalinkと変更PRを作成する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Repositories",
+      "Code navigation"
+    ],
+    "feature_ids": [
+      "GH-REP-004",
+      "GH-REP-009"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 11,
+    "part": 3,
+    "title": "ブランチ・コミット管理",
+    "prerequisites": [
+      1,
+      9,
+      10
+    ],
+    "objectives": [
+      "履歴と参照を安全に扱い変更を追跡できる"
+    ],
+    "sections": [
+      {
+        "number": "11.1",
+        "title": "参照管理",
+        "subsections": [
+          "branches",
+          "tags・default branch"
+        ]
+      },
+      {
+        "number": "11.2",
+        "title": "コミット",
+        "subsections": [
+          "比較・署名",
+          "著者とcommitter"
+        ]
+      },
+      {
+        "number": "11.3",
+        "title": "履歴設計",
+        "subsections": [
+          "rebase・cherry-pick",
+          "復旧と共有済み履歴"
+        ]
+      }
+    ],
+    "lab": "A:作業branchとtagを作り差分を検証する",
+    "review": "作業branchとtagを作り差分を検証する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Repositories",
+      "Authentication",
+      "Git"
+    ],
+    "feature_ids": [
+      "GH-REP-002",
+      "GH-REP-003"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 12,
+    "part": 3,
+    "title": "RepositoryのSettings",
+    "prerequisites": [
+      8,
+      9
+    ],
+    "objectives": [
+      "設定の影響範囲と変更権限を把握できる"
+    ],
+    "sections": [
+      {
+        "number": "12.1",
+        "title": "General",
+        "subsections": [
+          "機能toggle",
+          "PRとmerge設定"
+        ]
+      },
+      {
+        "number": "12.2",
+        "title": "アクセス",
+        "subsections": [
+          "collaborators・teams",
+          "deploy keys・Apps"
+        ]
+      },
+      {
+        "number": "12.3",
+        "title": "開発設定",
+        "subsections": [
+          "Actions・secrets",
+          "environments・Pages"
+        ]
+      }
+    ],
+    "lab": "A:readとadminで設定の見え方を比較する",
+    "review": "readとadminで設定の見え方を比較する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Repositories",
+      "Actions",
+      "Organizations"
+    ],
+    "feature_ids": [],
+    "reused_feature_ids": [
+      "GH-ACT-001",
+      "GH-ACT-002",
+      "GH-ACT-003",
+      "GH-ACT-004",
+      "GH-ACT-005",
+      "GH-ACT-006",
+      "GH-ACT-007",
+      "GH-ACT-008",
+      "GH-ACT-009",
+      "GH-ACT-010",
+      "GH-ACT-011",
+      "GH-ACT-012",
+      "GH-ACT-013",
+      "GH-ACT-014",
+      "GH-ACT-015",
+      "GH-ACT-016",
+      "GH-ACT-017",
+      "GH-ACT-018",
+      "GH-ACT-019",
+      "GH-ACT-020",
+      "GH-ACT-021",
+      "GH-ACT-022",
+      "GH-ACT-023",
+      "GH-ACT-024",
+      "GH-ACT-025",
+      "GH-ACT-026",
+      "GH-ACT-027",
+      "GH-ACT-028",
+      "GH-ACT-029",
+      "GH-ACT-030",
+      "GH-ACT-031",
+      "GH-ACT-032",
+      "GH-ACT-033",
+      "GH-ACT-034",
+      "GH-ACT-035",
+      "GH-ACT-036",
+      "GH-ACT-037",
+      "GH-ACT-038",
+      "GH-ACT-039",
+      "GH-ACT-040",
+      "GH-ACT-041",
+      "GH-ACT-042",
+      "GH-ACT-043",
+      "GH-ACT-044",
+      "GH-ACT-045",
+      "GH-ACT-046",
+      "GH-ACT-047",
+      "GH-ACT-048",
+      "GH-ACT-049",
+      "GH-ACT-050",
+      "GH-ACT-051",
+      "GH-ACT-066",
+      "GH-ACT-067",
+      "GH-ACT-068",
+      "GH-ACT-069",
+      "GH-ACT-070",
+      "GH-ACT-071",
+      "GH-REP-013",
+      "GH-REP-014",
+      "GH-REP-015",
+      "GH-REP-016",
+      "GH-REP-017",
+      "GH-REP-018",
+      "GH-REP-019",
+      "GH-REP-020",
+      "GH-REP-021",
+      "GH-REP-022",
+      "GH-REP-023",
+      "GH-REP-024",
+      "GH-REP-025",
+      "GH-REP-026",
+      "GH-REP-042",
+      "GH-REP-043",
+      "GH-REP-044"
+    ]
+  },
+  {
+    "number": 13,
+    "part": 3,
+    "title": "Rulesetsとブランチ保護",
+    "prerequisites": [
+      11,
+      12
+    ],
+    "objectives": [
+      "複数の保護ルールとbypassを設計できる"
+    ],
+    "sections": [
+      {
+        "number": "13.1",
+        "title": "保護モデル",
+        "subsections": [
+          "branch protection",
+          "rulesetsの重なり"
+        ]
+      },
+      {
+        "number": "13.2",
+        "title": "要件",
+        "subsections": [
+          "reviews・checks",
+          "署名・履歴・push制約"
+        ]
+      },
+      {
+        "number": "13.3",
+        "title": "bypassと評価",
+        "subsections": [
+          "役割と例外",
+          "evaluate・insights"
+        ]
+      }
+    ],
+    "lab": "B:承認とcheckの成功・拒否ケースを設計する",
+    "review": "承認とcheckの成功・拒否ケースを設計する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Rulesets",
+      "Protected branches"
+    ],
+    "feature_ids": [
+      "GH-REP-013",
+      "GH-REP-014",
+      "GH-REP-015",
+      "GH-REP-016",
+      "GH-REP-017",
+      "GH-REP-018",
+      "GH-REP-019",
+      "GH-REP-020",
+      "GH-REP-021",
+      "GH-REP-022",
+      "GH-REP-023",
+      "GH-REP-024",
+      "GH-REP-025",
+      "GH-REP-026"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 14,
+    "part": 3,
+    "title": "InsightsとRepository分析",
+    "prerequisites": [
+      9,
+      15,
+      17
+    ],
+    "objectives": [
+      "集計の制約を踏まえてRepositoryを評価できる"
+    ],
+    "sections": [
+      {
+        "number": "14.1",
+        "title": "活動",
+        "subsections": [
+          "Pulse・contributors",
+          "commits・code frequency"
+        ]
+      },
+      {
+        "number": "14.2",
+        "title": "流入と関係",
+        "subsections": [
+          "Traffic",
+          "network・forks"
+        ]
+      },
+      {
+        "number": "14.3",
+        "title": "品質と運用",
+        "subsections": [
+          "dependency graph",
+          "community・集計遅延"
+        ]
+      }
+    ],
+    "lab": "B:観測期間と権限を固定した分析を作る",
+    "review": "観測期間と権限を固定した分析を作る。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Repositories Insights",
+      "Community"
+    ],
+    "feature_ids": [
+      "GH-REP-045"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 15,
+    "part": 4,
+    "title": "GitHub Issues",
+    "prerequisites": [
+      3,
+      9
+    ],
+    "objectives": [
+      "再現可能なIssueとトリアージ手順を作れる"
+    ],
+    "sections": [
+      {
+        "number": "15.1",
+        "title": "作成",
+        "subsections": [
+          "templates・forms",
+          "再現条件・添付"
+        ]
+      },
+      {
+        "number": "15.2",
+        "title": "整理",
+        "subsections": [
+          "labels・milestones",
+          "assignee・検索"
+        ]
+      },
+      {
+        "number": "15.3",
+        "title": "ライフサイクル",
+        "subsections": [
+          "close reason",
+          "transfer・lock・archive相違"
+        ]
+      }
+    ],
+    "lab": "A:不具合テンプレートから課題を登録する",
+    "review": "不具合テンプレートから課題を登録する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Issues",
+      "Issue forms"
+    ],
+    "feature_ids": [
+      "GH-COL-001",
+      "GH-COL-002",
+      "GH-COL-003",
+      "GH-COL-004"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 16,
+    "part": 4,
+    "title": "Issuesの高度な管理",
+    "prerequisites": [
+      15,
+      44
+    ],
+    "objectives": [
+      "階層・依存・組織メタデータを使い分けられる"
+    ],
+    "sections": [
+      {
+        "number": "16.1",
+        "title": "構造化",
+        "subsections": [
+          "sub-issues",
+          "依存とblocked"
+        ]
+      },
+      {
+        "number": "16.2",
+        "title": "共通分類",
+        "subsections": [
+          "issue types",
+          "issue fieldsとlabels"
+        ]
+      },
+      {
+        "number": "16.3",
+        "title": "運用",
+        "subsections": [
+          "triage・横断検索",
+          "移動・旧tasklistとの違い"
+        ]
+      }
+    ],
+    "lab": "B:機能開発を分解し依存関係を設定する",
+    "review": "機能開発を分解し依存関係を設定する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Issues",
+      "Organizations"
+    ],
+    "feature_ids": [
+      "GH-COL-005",
+      "GH-COL-006",
+      "GH-COL-007",
+      "GH-COL-008",
+      "GH-COL-009",
+      "GH-COL-052",
+      "GH-COL-053"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 17,
+    "part": 4,
+    "title": "Pull Requestの全体像",
+    "prerequisites": [
+      11,
+      15
+    ],
+    "objectives": [
+      "baseとheadを理解しレビュー可能なPRを作れる"
+    ],
+    "sections": [
+      {
+        "number": "17.1",
+        "title": "作成",
+        "subsections": [
+          "compare・fork",
+          "Draftとready"
+        ]
+      },
+      {
+        "number": "17.2",
+        "title": "構成",
+        "subsections": [
+          "Conversation・Commits",
+          "Checks・Files changed・Findings"
+        ]
+      },
+      {
+        "number": "17.3",
+        "title": "関連付け",
+        "subsections": [
+          "Issue closing",
+          "stacked PRの単位"
+        ]
+      }
+    ],
+    "lab": "A:IssueからDraft PRを作りレビュー準備をする",
+    "review": "IssueからDraft PRを作りレビュー準備をする。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Pull requests",
+      "Issues"
+    ],
+    "feature_ids": [
+      "GH-COL-023",
+      "GH-COL-024",
+      "GH-COL-025",
+      "GH-COL-026",
+      "GH-COL-033"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 18,
+    "part": 4,
+    "title": "Code Reviewの完全解説",
+    "prerequisites": [
+      13,
+      17
+    ],
+    "objectives": [
+      "レビュー権限と承認要件を運用できる"
+    ],
+    "sections": [
+      {
+        "number": "18.1",
+        "title": "レビュー操作",
+        "subsections": [
+          "comments・suggestions",
+          "approve・request changes"
+        ]
+      },
+      {
+        "number": "18.2",
+        "title": "所有と統制",
+        "subsections": [
+          "CODEOWNERS",
+          "required reviews・stale approval"
+        ]
+      },
+      {
+        "number": "18.3",
+        "title": "運用",
+        "subsections": [
+          "差分の読み方",
+          "dismiss・再レビュー"
+        ]
+      }
+    ],
+    "lab": "B:担当所有者のレビューと修正を循環させる",
+    "review": "担当所有者のレビューと修正を循環させる。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Pull requests reviews",
+      "CODEOWNERS"
+    ],
+    "feature_ids": [
+      "GH-COL-027",
+      "GH-COL-028",
+      "GH-COL-029",
+      "GH-COL-030"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 19,
+    "part": 4,
+    "title": "PRのマージと変更履歴",
+    "prerequisites": [
+      13,
+      18,
+      22
+    ],
+    "objectives": [
+      "マージ方式とqueueを選び履歴を保守できる"
+    ],
+    "sections": [
+      {
+        "number": "19.1",
+        "title": "マージ方式",
+        "subsections": [
+          "merge commit",
+          "squash・rebase"
+        ]
+      },
+      {
+        "number": "19.2",
+        "title": "保護との協調",
+        "subsections": [
+          "required checks",
+          "auto-merge・merge queue"
+        ]
+      },
+      {
+        "number": "19.3",
+        "title": "変更後",
+        "subsections": [
+          "branch削除",
+          "revert・stackの再整列"
+        ]
+      }
+    ],
+    "lab": "B:同じ変更を各方式で統合し履歴を比較する",
+    "review": "同じ変更を各方式で統合し履歴を比較する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Pull requests",
+      "Merge queue",
+      "Actions"
+    ],
+    "feature_ids": [
+      "GH-ACT-012",
+      "GH-COL-031",
+      "GH-COL-033"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 20,
+    "part": 4,
+    "title": "GitHub Projects",
+    "prerequisites": [
+      15,
+      16
+    ],
+    "objectives": [
+      "課題を複数ビューと自動化で管理できる"
+    ],
+    "sections": [
+      {
+        "number": "20.1",
+        "title": "データ",
+        "subsections": [
+          "items・drafts",
+          "custom fields・iteration"
+        ]
+      },
+      {
+        "number": "20.2",
+        "title": "ビュー",
+        "subsections": [
+          "table・board",
+          "roadmap・group・filter"
+        ]
+      },
+      {
+        "number": "20.3",
+        "title": "運用",
+        "subsections": [
+          "workflows・templates",
+          "insights・access・API"
+        ]
+      }
+    ],
+    "lab": "B:5人チームの計画と進捗ビューを作る",
+    "review": "5人チームの計画と進捗ビューを作る。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Projects",
+      "GraphQL"
+    ],
+    "feature_ids": [
+      "GH-COL-010",
+      "GH-COL-011",
+      "GH-COL-012",
+      "GH-COL-013",
+      "GH-COL-014",
+      "GH-COL-015",
+      "GH-COL-016",
+      "GH-COL-017",
+      "GH-COL-018",
+      "GH-COL-019",
+      "GH-COL-020",
+      "GH-COL-021",
+      "GH-COL-022"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 21,
+    "part": 4,
+    "title": "Discussionsと共同作業",
+    "prerequisites": [
+      9,
+      15,
+      17
+    ],
+    "objectives": [
+      "課題追跡と会話・知識共有を分けて運用できる"
+    ],
+    "sections": [
+      {
+        "number": "21.1",
+        "title": "Discussions",
+        "subsections": [
+          "categories・forms",
+          "回答・polls・moderation"
+        ]
+      },
+      {
+        "number": "21.2",
+        "title": "知識",
+        "subsections": [
+          "Wiki・sidebar",
+          "history・アクセス"
+        ]
+      },
+      {
+        "number": "21.3",
+        "title": "共同作業",
+        "subsections": [
+          "Issueとの転換",
+          "community標準文書"
+        ]
+      }
+    ],
+    "lab": "B:質問から回答とWiki記録へつなぐ",
+    "review": "質問から回答とWiki記録へつなぐ。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Discussions",
+      "Wiki",
+      "Community"
+    ],
+    "feature_ids": [
+      "GH-COL-034",
+      "GH-COL-035",
+      "GH-COL-036",
+      "GH-COL-037",
+      "GH-COL-038"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 22,
+    "part": 5,
+    "title": "GitHub Actionsの基本",
+    "prerequisites": [
+      9,
+      11,
+      17
+    ],
+    "objectives": [
+      "イベントからjobとcheckまでの流れを説明できる"
+    ],
+    "sections": [
+      {
+        "number": "22.1",
+        "title": "モデル",
+        "subsections": [
+          "workflow・event",
+          "job・step・action"
+        ]
+      },
+      {
+        "number": "22.2",
+        "title": "初回CI",
+        "subsections": [
+          "checkout・setup",
+          "test・失敗結果"
+        ]
+      },
+      {
+        "number": "22.3",
+        "title": "観察",
+        "subsections": [
+          "run・logs",
+          "artifacts・再実行"
+        ]
+      }
+    ],
+    "lab": "A:成功と失敗するテストCIを作る",
+    "review": "成功と失敗するテストCIを作る。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Actions quickstart",
+      "Concepts"
+    ],
+    "feature_ids": [
+      "GH-ACT-001",
+      "GH-ACT-002",
+      "GH-ACT-003",
+      "GH-ACT-004",
+      "GH-ACT-005",
+      "GH-ACT-006"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 23,
+    "part": 5,
+    "title": "Workflowの詳細仕様",
+    "prerequisites": [
+      22
+    ],
+    "objectives": [
+      "YAMLと実行コンテキストを正しく設計できる"
+    ],
+    "sections": [
+      {
+        "number": "23.1",
+        "title": "トリガー",
+        "subsections": [
+          "events・filters",
+          "ref・SHAの違い"
+        ]
+      },
+      {
+        "number": "23.2",
+        "title": "データ",
+        "subsections": [
+          "expressions・contexts",
+          "env・outputs・needs"
+        ]
+      },
+      {
+        "number": "23.3",
+        "title": "実行制御",
+        "subsections": [
+          "matrix・conditions",
+          "concurrency・timeout"
+        ]
+      }
+    ],
+    "lab": "C:イベントごとのrefとtoken条件を比較する",
+    "review": "イベントごとのrefとtoken条件を比較する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Workflow syntax",
+      "Events",
+      "Contexts"
+    ],
+    "feature_ids": [
+      "GH-ACT-007",
+      "GH-ACT-008",
+      "GH-ACT-009",
+      "GH-ACT-010",
+      "GH-ACT-011",
+      "GH-ACT-012",
+      "GH-ACT-013",
+      "GH-ACT-014",
+      "GH-ACT-015",
+      "GH-ACT-016",
+      "GH-ACT-024"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 24,
+    "part": 5,
+    "title": "Actionsの高度な設計",
+    "prerequisites": [
+      23
+    ],
+    "objectives": [
+      "再利用・性能・保守性を両立できる"
+    ],
+    "sections": [
+      {
+        "number": "24.1",
+        "title": "再利用",
+        "subsections": [
+          "reusable workflows",
+          "composite・JS・Docker actions"
+        ]
+      },
+      {
+        "number": "24.2",
+        "title": "成果物",
+        "subsections": [
+          "artifacts",
+          "cache key・restore"
+        ]
+      },
+      {
+        "number": "24.3",
+        "title": "並列と依存",
+        "subsections": [
+          "matrix・fan-out",
+          "service containers・lockfiles"
+        ]
+      }
+    ],
+    "lab": "C:cache有無の同等性と再利用境界を確認する",
+    "review": "cache有無の同等性と再利用境界を確認する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Actions reuse",
+      "Cache",
+      "Artifacts"
+    ],
+    "feature_ids": [
+      "GH-ACT-029",
+      "GH-ACT-030",
+      "GH-ACT-031",
+      "GH-ACT-032"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 25,
+    "part": 5,
+    "title": "Runnerと実行環境",
+    "prerequisites": [
+      23,
+      27
+    ],
+    "objectives": [
+      "隔離と容量に応じてRunnerを選べる"
+    ],
+    "sections": [
+      {
+        "number": "25.1",
+        "title": "実行方式",
+        "subsections": [
+          "hosted・larger",
+          "self-hosted・ephemeral"
+        ]
+      },
+      {
+        "number": "25.2",
+        "title": "組織管理",
+        "subsections": [
+          "groups・labels",
+          "ARC・network"
+        ]
+      },
+      {
+        "number": "25.3",
+        "title": "保守",
+        "subsections": [
+          "images・updates",
+          "limits・metrics・残存状態"
+        ]
+      }
+    ],
+    "lab": "C:信頼境界と実行環境の比較表を設計する",
+    "review": "信頼境界と実行環境の比較表を設計する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Actions runners",
+      "ARC"
+    ],
+    "feature_ids": [
+      "GH-ACT-017",
+      "GH-ACT-018"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 26,
+    "part": 5,
+    "title": "CDとデプロイ",
+    "prerequisites": [
+      23,
+      27
+    ],
+    "objectives": [
+      "承認・環境・認証を含む配布を設計できる"
+    ],
+    "sections": [
+      {
+        "number": "26.1",
+        "title": "環境",
+        "subsections": [
+          "environments・variables",
+          "secrets・branch制約"
+        ]
+      },
+      {
+        "number": "26.2",
+        "title": "承認",
+        "subsections": [
+          "reviewers・wait",
+          "自己承認・保護ルール"
+        ]
+      },
+      {
+        "number": "26.3",
+        "title": "配送",
+        "subsections": [
+          "deployments・OIDC",
+          "rollback・release連携"
+        ]
+      }
+    ],
+    "lab": "C:本番公開せず承認付き配送の状態遷移を作る",
+    "review": "本番公開せず承認付き配送の状態遷移を作る。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Environments",
+      "Deployments",
+      "OIDC"
+    ],
+    "feature_ids": [
+      "GH-ACT-025",
+      "GH-ACT-026",
+      "GH-ACT-027",
+      "GH-ACT-028"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 27,
+    "part": 5,
+    "title": "Actionsのセキュリティ",
+    "prerequisites": [
+      6,
+      23
+    ],
+    "objectives": [
+      "外部入力とtokenの境界を守れる"
+    ],
+    "sections": [
+      {
+        "number": "27.1",
+        "title": "脅威",
+        "subsections": [
+          "untrusted PR",
+          "script injection・checkout対象"
+        ]
+      },
+      {
+        "number": "27.2",
+        "title": "認証",
+        "subsections": [
+          "permissions・GITHUB_TOKEN",
+          "secrets・OIDC"
+        ]
+      },
+      {
+        "number": "27.3",
+        "title": "供給元",
+        "subsections": [
+          "SHA pin・lockfile",
+          "fork承認・runner隔離"
+        ]
+      }
+    ],
+    "lab": "C:秘密値なしの入力で境界を検証する",
+    "review": "秘密値なしの入力で境界を検証する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Actions security",
+      "OIDC"
+    ],
+    "feature_ids": [
+      "GH-ACT-019",
+      "GH-ACT-020",
+      "GH-ACT-021",
+      "GH-ACT-022",
+      "GH-ACT-023"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 28,
+    "part": 6,
+    "title": "Securityタブの全体構造",
+    "prerequisites": [
+      8,
+      12
+    ],
+    "objectives": [
+      "検出・修正・統制機能と利用条件を分類できる"
+    ],
+    "sections": [
+      {
+        "number": "28.1",
+        "title": "製品と画面",
+        "subsections": [
+          "Code Security",
+          "Secret Protection・Quality"
+        ]
+      },
+      {
+        "number": "28.2",
+        "title": "運用",
+        "subsections": [
+          "alerts・roles",
+          "security policy・advisories"
+        ]
+      },
+      {
+        "number": "28.3",
+        "title": "組織連携",
+        "subsections": [
+          "overview・configurations",
+          "plan・visibility条件"
+        ]
+      }
+    ],
+    "lab": "C:検出機能と契約・権限の表を作る",
+    "review": "検出機能と契約・権限の表を作る。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Security and quality",
+      "Billing"
+    ],
+    "feature_ids": [],
+    "reused_feature_ids": [
+      "GH-ACT-033",
+      "GH-ACT-034",
+      "GH-ACT-035",
+      "GH-ACT-036",
+      "GH-ACT-037",
+      "GH-ACT-038",
+      "GH-ACT-039",
+      "GH-ACT-040",
+      "GH-ACT-041",
+      "GH-ACT-042",
+      "GH-ACT-043",
+      "GH-ACT-044",
+      "GH-ACT-045",
+      "GH-ACT-046",
+      "GH-ACT-047",
+      "GH-ACT-048",
+      "GH-ACT-049",
+      "GH-ACT-050",
+      "GH-ACT-051",
+      "GH-ACT-066",
+      "GH-ACT-067",
+      "GH-ACT-068",
+      "GH-ACT-069",
+      "GH-ACT-070",
+      "GH-ACT-071"
+    ]
+  },
+  {
+    "number": 29,
+    "part": 6,
+    "title": "Dependabotと依存関係",
+    "prerequisites": [
+      22,
+      28
+    ],
+    "objectives": [
+      "更新・脆弱性・導入差分を分けて管理できる"
+    ],
+    "sections": [
+      {
+        "number": "29.1",
+        "title": "把握",
+        "subsections": [
+          "dependency graph",
+          "SBOM・manifest・lockfile"
+        ]
+      },
+      {
+        "number": "29.2",
+        "title": "検出と更新",
+        "subsections": [
+          "alerts・security updates",
+          "version updates・groups"
+        ]
+      },
+      {
+        "number": "29.3",
+        "title": "統制",
+        "subsections": [
+          "dependency review",
+          "private registry・auto-triage"
+        ]
+      }
+    ],
+    "lab": "C:更新PRと導入差分検査を比較する",
+    "review": "更新PRと導入差分検査を比較する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Supply chain",
+      "Dependabot"
+    ],
+    "feature_ids": [
+      "GH-ACT-033",
+      "GH-ACT-034",
+      "GH-ACT-035",
+      "GH-ACT-036",
+      "GH-ACT-046",
+      "GH-ACT-047",
+      "GH-ACT-048",
+      "GH-ACT-070",
+      "GH-ACT-071"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 30,
+    "part": 6,
+    "title": "Code Security",
+    "prerequisites": [
+      23,
+      28
+    ],
+    "objectives": [
+      "解析範囲と修正支援の限界を説明できる"
+    ],
+    "sections": [
+      {
+        "number": "30.1",
+        "title": "解析",
+        "subsections": [
+          "code scanning・CodeQL",
+          "default・advanced setup"
+        ]
+      },
+      {
+        "number": "30.2",
+        "title": "連携",
+        "subsections": [
+          "SARIF・言語build",
+          "query packs・schedule"
+        ]
+      },
+      {
+        "number": "30.3",
+        "title": "修正と品質",
+        "subsections": [
+          "Autofix・AI Scan",
+          "triage・quality・課金"
+        ]
+      }
+    ],
+    "lab": "C:検証用コードで検出と修正結果を照合する",
+    "review": "検証用コードで検出と修正結果を照合する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Code scanning",
+      "CodeQL",
+      "Quality"
+    ],
+    "feature_ids": [
+      "GH-ACT-037",
+      "GH-ACT-038",
+      "GH-ACT-039",
+      "GH-ACT-040",
+      "GH-ACT-041",
+      "GH-ACT-042",
+      "GH-ACT-043"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 31,
+    "part": 6,
+    "title": "Secret Security",
+    "prerequisites": [
+      6,
+      28
+    ],
+    "objectives": [
+      "漏えい検出と失効・再発防止を運用できる"
+    ],
+    "sections": [
+      {
+        "number": "31.1",
+        "title": "検出",
+        "subsections": [
+          "secret scanning",
+          "patterns・validity"
+        ]
+      },
+      {
+        "number": "31.2",
+        "title": "予防",
+        "subsections": [
+          "push protection",
+          "bypass・delegated review"
+        ]
+      },
+      {
+        "number": "31.3",
+        "title": "事故対応",
+        "subsections": [
+          "revoke・rotate",
+          "history除去と監査"
+        ]
+      }
+    ],
+    "lab": "C:本物の秘密値を使わず対応手順を設計する",
+    "review": "本物の秘密値を使わず対応手順を設計する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Secret scanning",
+      "Push protection"
+    ],
+    "feature_ids": [
+      "GH-ACT-044",
+      "GH-ACT-045",
+      "GH-ACT-066",
+      "GH-ACT-067",
+      "GH-ACT-068",
+      "GH-ACT-069"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 32,
+    "part": 6,
+    "title": "サプライチェーンと品質統制",
+    "prerequisites": [
+      13,
+      24,
+      29,
+      30,
+      31
+    ],
+    "objectives": [
+      "成果物の由来と依存ポリシーを検証できる"
+    ],
+    "sections": [
+      {
+        "number": "32.1",
+        "title": "証跡",
+        "subsections": [
+          "artifact attestations",
+          "provenance・SBOM"
+        ]
+      },
+      {
+        "number": "32.2",
+        "title": "依存統制",
+        "subsections": [
+          "license・malware",
+          "package firewall・exceptions"
+        ]
+      },
+      {
+        "number": "32.3",
+        "title": "統合",
+        "subsections": [
+          "rulesets・checks",
+          "issuer・subject・digest"
+        ]
+      }
+    ],
+    "lab": "C:署名有無と検証条件成立の違いを評価する",
+    "review": "署名有無と検証条件成立の違いを評価する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Supply chain",
+      "Attestations",
+      "Rulesets"
+    ],
+    "feature_ids": [
+      "GH-ACT-049",
+      "GH-ACT-050",
+      "GH-ACT-051"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 33,
+    "part": 7,
+    "title": "Releases・Packages・Registry",
+    "prerequisites": [
+      11,
+      24,
+      32
+    ],
+    "objectives": [
+      "配布物の版・公開範囲・権限を管理できる"
+    ],
+    "sections": [
+      {
+        "number": "33.1",
+        "title": "Releases",
+        "subsections": [
+          "tags・notes",
+          "assets・immutable releases"
+        ]
+      },
+      {
+        "number": "33.2",
+        "title": "Packages",
+        "subsections": [
+          "registry種別",
+          "GHCR・認証"
+        ]
+      },
+      {
+        "number": "33.3",
+        "title": "運用",
+        "subsections": [
+          "権限継承・削除復元",
+          "retention・費用"
+        ]
+      }
+    ],
+    "lab": "A:未公開のrelease案と配布物digestを作る",
+    "review": "未公開のrelease案と配布物digestを作る。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Releases",
+      "Packages",
+      "GHCR"
+    ],
+    "feature_ids": [
+      "GH-ACT-052",
+      "GH-ACT-053",
+      "GH-ACT-054",
+      "GH-ACT-055",
+      "GH-ACT-056",
+      "GH-ACT-057",
+      "GH-ACT-058",
+      "GH-ACT-059"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 34,
+    "part": 7,
+    "title": "GitHub Pages",
+    "prerequisites": [
+      8,
+      22,
+      26
+    ],
+    "objectives": [
+      "ビルドと公開・ドメイン設定を分けて設計できる"
+    ],
+    "sections": [
+      {
+        "number": "34.1",
+        "title": "生成",
+        "subsections": [
+          "branch source",
+          "Actions・static assets"
+        ]
+      },
+      {
+        "number": "34.2",
+        "title": "公開",
+        "subsections": [
+          "domain・HTTPS",
+          "access・visibility"
+        ]
+      },
+      {
+        "number": "34.3",
+        "title": "制約",
+        "subsections": [
+          "limits・cache",
+          "404・path・公開承認"
+        ]
+      }
+    ],
+    "lab": "A:ローカル相当の生成サイトを検証し公開手順を記す",
+    "review": "ローカル相当の生成サイトを検証し公開手順を記す。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Pages",
+      "Actions deployment"
+    ],
+    "feature_ids": [
+      "GH-ACT-060",
+      "GH-ACT-061",
+      "GH-ACT-062"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 35,
+    "part": 7,
+    "title": "GitHub Codespaces",
+    "prerequisites": [
+      8,
+      9,
+      25
+    ],
+    "objectives": [
+      "再現可能な開発環境と費用境界を設計できる"
+    ],
+    "sections": [
+      {
+        "number": "35.1",
+        "title": "環境定義",
+        "subsections": [
+          "devcontainer",
+          "features・prebuilds"
+        ]
+      },
+      {
+        "number": "35.2",
+        "title": "利用",
+        "subsections": [
+          "ports・secrets",
+          "branch・resume・rebuild"
+        ]
+      },
+      {
+        "number": "35.3",
+        "title": "統制",
+        "subsections": [
+          "policy・machine",
+          "timeout・retention・費用"
+        ]
+      }
+    ],
+    "lab": "C:設定ファイルと実環境の確認項目を分ける",
+    "review": "設定ファイルと実環境の確認項目を分ける。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Codespaces",
+      "Dev Containers",
+      "Billing"
+    ],
+    "feature_ids": [
+      "GH-ACT-063",
+      "GH-ACT-064",
+      "GH-ACT-065"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 36,
+    "part": 8,
+    "title": "GitHub.com上のCopilot",
+    "prerequisites": [
+      6,
+      8,
+      10
+    ],
+    "objectives": [
+      "支援対象とプラン・データ境界を説明できる"
+    ],
+    "sections": [
+      {
+        "number": "36.1",
+        "title": "支援面",
+        "subsections": [
+          "Chat・search",
+          "code説明・モデル選択"
+        ]
+      },
+      {
+        "number": "36.2",
+        "title": "契約",
+        "subsections": [
+          "plans・usage",
+          "AI credits・管理policy"
+        ]
+      },
+      {
+        "number": "36.3",
+        "title": "信頼",
+        "subsections": [
+          "出典・検証",
+          "data use・content exclusion"
+        ]
+      }
+    ],
+    "lab": "D:回答の根拠と人間の検証手順を記録する",
+    "review": "回答の根拠と人間の検証手順を記録する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Copilot",
+      "Plans",
+      "Changelog"
+    ],
+    "feature_ids": [
+      "GH-AI-001",
+      "GH-AI-002",
+      "GH-AI-006",
+      "GH-AI-039"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 37,
+    "part": 8,
+    "title": "Copilot Cloud Agent",
+    "prerequisites": [
+      17,
+      22,
+      27,
+      36
+    ],
+    "objectives": [
+      "タスク割当からPRまでを承認付きで運用できる"
+    ],
+    "sections": [
+      {
+        "number": "37.1",
+        "title": "タスク",
+        "subsections": [
+          "Issue・session",
+          "指示・対象repo"
+        ]
+      },
+      {
+        "number": "37.2",
+        "title": "実行",
+        "subsections": [
+          "setup workflow",
+          "firewall・secrets・permissions"
+        ]
+      },
+      {
+        "number": "37.3",
+        "title": "変更",
+        "subsections": [
+          "PR・review・修正",
+          "停止・費用・audit"
+        ]
+      }
+    ],
+    "lab": "D:小さなIssueに対する変更案を人間が評価する",
+    "review": "小さなIssueに対する変更案を人間が評価する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Cloud agent",
+      "Sessions",
+      "Actions"
+    ],
+    "feature_ids": [
+      "GH-AI-003",
+      "GH-AI-004",
+      "GH-AI-005",
+      "GH-AI-006",
+      "GH-AI-007"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 38,
+    "part": 8,
+    "title": "Copilot Code Review",
+    "prerequisites": [
+      18,
+      36
+    ],
+    "objectives": [
+      "AI指摘と承認条件を区別できる"
+    ],
+    "sections": [
+      {
+        "number": "38.1",
+        "title": "依頼",
+        "subsections": [
+          "手動・自動",
+          "対象差分・設定"
+        ]
+      },
+      {
+        "number": "38.2",
+        "title": "結果",
+        "subsections": [
+          "comments・findings",
+          "fix提案・再レビュー"
+        ]
+      },
+      {
+        "number": "38.3",
+        "title": "統制",
+        "subsections": [
+          "custom instructions",
+          "プラン・AI承認・Preview"
+        ]
+      }
+    ],
+    "lab": "D:AIが指摘しない問題も含めレビューを採点する",
+    "review": "AIが指摘しない問題も含めレビューを採点する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Copilot code review",
+      "PR reviews"
+    ],
+    "feature_ids": [
+      "GH-AI-008",
+      "GH-AI-009",
+      "GH-AI-010",
+      "GH-AI-011",
+      "GH-AI-012"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 39,
+    "part": 8,
+    "title": "AIエージェント連携と統制",
+    "prerequisites": [
+      27,
+      37,
+      38,
+      42
+    ],
+    "objectives": [
+      "GitHub機能と外部ツールの権限境界を設計できる"
+    ],
+    "sections": [
+      {
+        "number": "39.1",
+        "title": "文脈",
+        "subsections": [
+          "custom instructions",
+          "custom agents・skills"
+        ]
+      },
+      {
+        "number": "39.2",
+        "title": "接続",
+        "subsections": [
+          "MCP・tools",
+          "hooks・prompt injection"
+        ]
+      },
+      {
+        "number": "39.3",
+        "title": "運用",
+        "subsections": [
+          "Codex・Claude等",
+          "承認・監査・人間の最終判断"
+        ]
+      }
+    ],
+    "lab": "D:IssueからCI・人間承認までの責任分担を設計する",
+    "review": "IssueからCI・人間承認までの責任分担を設計する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Copilot customization",
+      "MCP",
+      "各ベンダー公式"
+    ],
+    "feature_ids": [
+      "GH-AI-007",
+      "GH-AI-013",
+      "GH-AI-014",
+      "GH-AI-015",
+      "GH-AI-016",
+      "GH-AI-017",
+      "GH-AI-018",
+      "GH-AI-019",
+      "GH-AI-049",
+      "GH-AI-050",
+      "GH-AI-051",
+      "GH-AI-052",
+      "GH-AI-053",
+      "GH-AI-057"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 40,
+    "part": 9,
+    "title": "GitHub CLIと周辺ツール",
+    "prerequisites": [
+      1,
+      6,
+      17
+    ],
+    "objectives": [
+      "WebとCLIを使い分け結果を照合できる"
+    ],
+    "sections": [
+      {
+        "number": "40.1",
+        "title": "CLI",
+        "subsections": [
+          "auth・repo・issue",
+          "pr・workflow・release"
+        ]
+      },
+      {
+        "number": "40.2",
+        "title": "拡張",
+        "subsections": [
+          "gh api・pagination",
+          "extensions・aliases"
+        ]
+      },
+      {
+        "number": "40.3",
+        "title": "周辺",
+        "subsections": [
+          "Desktop・Mobile",
+          "Webとの差とOS制約"
+        ]
+      }
+    ],
+    "lab": "A:同じPRをWebと読取CLIで比較する",
+    "review": "同じPRをWebと読取CLIで比較する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "CLI manual",
+      "Desktop",
+      "Mobile"
+    ],
+    "feature_ids": [
+      "GH-COL-039"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 41,
+    "part": 9,
+    "title": "GitHub API",
+    "prerequisites": [
+      6,
+      15,
+      17,
+      40
+    ],
+    "objectives": [
+      "認証・ページング・制限を扱う連携を設計できる"
+    ],
+    "sections": [
+      {
+        "number": "41.1",
+        "title": "REST",
+        "subsections": [
+          "resources・version",
+          "headers・conditional requests"
+        ]
+      },
+      {
+        "number": "41.2",
+        "title": "GraphQL",
+        "subsections": [
+          "schema・query",
+          "mutation・cost"
+        ]
+      },
+      {
+        "number": "41.3",
+        "title": "堅牢性",
+        "subsections": [
+          "pagination・retry",
+          "secondary limits・権限不足"
+        ]
+      }
+    ],
+    "lab": "C:読取APIの複数ページと失敗応答を処理する",
+    "review": "読取APIの複数ページと失敗応答を処理する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "REST",
+      "GraphQL",
+      "Authentication"
+    ],
+    "feature_ids": [
+      "GH-COL-040",
+      "GH-COL-041",
+      "GH-COL-042",
+      "GH-COL-043"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 42,
+    "part": 9,
+    "title": "GitHub AppsとWebhooks",
+    "prerequisites": [
+      6,
+      41
+    ],
+    "objectives": [
+      "installation単位の権限とイベント処理を設計できる"
+    ],
+    "sections": [
+      {
+        "number": "42.1",
+        "title": "認証方式",
+        "subsections": [
+          "GitHub App",
+          "OAuth App・PAT比較"
+        ]
+      },
+      {
+        "number": "42.2",
+        "title": "App管理",
+        "subsections": [
+          "registration・installation",
+          "token・callback・permissions"
+        ]
+      },
+      {
+        "number": "42.3",
+        "title": "Webhooks",
+        "subsections": [
+          "署名・payload",
+          "redelivery・重複・順序"
+        ]
+      }
+    ],
+    "lab": "C:fixtureで署名と冪等処理を検証する",
+    "review": "fixtureで署名と冪等処理を検証する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Apps",
+      "Webhooks",
+      "OAuth"
+    ],
+    "feature_ids": [
+      "GH-COL-044",
+      "GH-COL-045",
+      "GH-COL-046",
+      "GH-COL-047",
+      "GH-COL-048",
+      "GH-COL-049"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 43,
+    "part": 9,
+    "title": "外部サービス連携",
+    "prerequisites": [
+      27,
+      41,
+      42
+    ],
+    "objectives": [
+      "連携目的と最小権限に応じて方式を選べる"
+    ],
+    "sections": [
+      {
+        "number": "43.1",
+        "title": "連携方式",
+        "subsections": [
+          "Marketplace",
+          "Apps・API・webhooks"
+        ]
+      },
+      {
+        "number": "43.2",
+        "title": "実務接続",
+        "subsections": [
+          "chat・ticket",
+          "CI・cloud・OIDC"
+        ]
+      },
+      {
+        "number": "43.3",
+        "title": "保守",
+        "subsections": [
+          "secret rotation",
+          "障害・監査・解約"
+        ]
+      }
+    ],
+    "lab": "B:Slack等との架空設計と公開実例を分ける",
+    "review": "Slack等との架空設計と公開実例を分ける。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Integrations",
+      "Marketplace",
+      "連携先公式"
+    ],
+    "feature_ids": [
+      "GH-AI-019",
+      "GH-COL-050",
+      "GH-COL-051"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 44,
+    "part": 10,
+    "title": "OrganizationとTeams",
+    "prerequisites": [
+      5,
+      6,
+      9
+    ],
+    "objectives": [
+      "メンバーとチームの権限を最小化できる"
+    ],
+    "sections": [
+      {
+        "number": "44.1",
+        "title": "構成",
+        "subsections": [
+          "members・outside collaborators",
+          "teams・nested teams"
+        ]
+      },
+      {
+        "number": "44.2",
+        "title": "権限",
+        "subsections": [
+          "repo roles",
+          "custom roles・権限の加算"
+        ]
+      },
+      {
+        "number": "44.3",
+        "title": "運用",
+        "subsections": [
+          "招待・offboarding",
+          "owner・maintainer・可視性"
+        ]
+      }
+    ],
+    "lab": "B:5人チームのアクセス表を作る",
+    "review": "5人チームのアクセス表を作る。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Organizations",
+      "Teams",
+      "Roles"
+    ],
+    "feature_ids": [
+      "GH-AI-020",
+      "GH-AI-021",
+      "GH-AI-022",
+      "GH-AI-023",
+      "GH-AI-024",
+      "GH-AI-025",
+      "GH-AI-026",
+      "GH-AI-030",
+      "GH-AI-031",
+      "GH-AI-032",
+      "GH-AI-033",
+      "GH-AI-034",
+      "GH-AI-038"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 45,
+    "part": 10,
+    "title": "Organizationのポリシー",
+    "prerequisites": [
+      13,
+      27,
+      44
+    ],
+    "objectives": [
+      "既定値と強制ポリシーの継承を説明できる"
+    ],
+    "sections": [
+      {
+        "number": "45.1",
+        "title": "Repository",
+        "subsections": [
+          "defaults・creation",
+          "rulesets・custom properties"
+        ]
+      },
+      {
+        "number": "45.2",
+        "title": "アクセス",
+        "subsections": [
+          "2FA・SSO・IP",
+          "Apps・OAuth・token policy"
+        ]
+      },
+      {
+        "number": "45.3",
+        "title": "開発統制",
+        "subsections": [
+          "Actions・runners",
+          "Codespaces・Copilot・security configs"
+        ]
+      }
+    ],
+    "lab": "E:例外申請を含む標準設定を設計する",
+    "review": "例外申請を含む標準設定を設計する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Organizations policies",
+      "Security at scale"
+    ],
+    "feature_ids": [
+      "GH-AI-018",
+      "GH-AI-028",
+      "GH-AI-029",
+      "GH-AI-030",
+      "GH-AI-033",
+      "GH-AI-034",
+      "GH-AI-040",
+      "GH-AI-041",
+      "GH-AI-042",
+      "GH-AI-043",
+      "GH-AI-044",
+      "GH-AI-045",
+      "GH-AI-046",
+      "GH-AI-047",
+      "GH-AI-057"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 46,
+    "part": 10,
+    "title": "GitHub Enterprise",
+    "prerequisites": [
+      6,
+      44,
+      45
+    ],
+    "objectives": [
+      "企業IDと製品境界を踏まえて構成できる"
+    ],
+    "sections": [
+      {
+        "number": "46.1",
+        "title": "製品",
+        "subsections": [
+          "Cloud・Server",
+          "GHE.com・data residency"
+        ]
+      },
+      {
+        "number": "46.2",
+        "title": "Identity",
+        "subsections": [
+          "SAML・SCIM",
+          "EMU・team sync・recovery"
+        ]
+      },
+      {
+        "number": "46.3",
+        "title": "運用",
+        "subsections": [
+          "organizations・teams",
+          "migration・license・policy継承"
+        ]
+      }
+    ],
+    "lab": "E:IdP接続を実行せず責任境界と障害対応を設計する",
+    "review": "IdP接続を実行せず責任境界と障害対応を設計する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Enterprise admin",
+      "Onboarding",
+      "EMU"
+    ],
+    "feature_ids": [
+      "GH-AI-036",
+      "GH-AI-037",
+      "GH-AI-038",
+      "GH-AI-048",
+      "GH-AI-054"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 47,
+    "part": 10,
+    "title": "ガバナンス・監査・費用",
+    "prerequisites": [
+      8,
+      32,
+      45,
+      46
+    ],
+    "objectives": [
+      "監査証跡と費用統制の限界を説明できる"
+    ],
+    "sections": [
+      {
+        "number": "47.1",
+        "title": "監査",
+        "subsections": [
+          "audit log・API",
+          "streaming・retention・イベント範囲"
+        ]
+      },
+      {
+        "number": "47.2",
+        "title": "組織統制",
+        "subsections": [
+          "security overview",
+          "例外・委任・アクセス棚卸し"
+        ]
+      },
+      {
+        "number": "47.3",
+        "title": "費用",
+        "subsections": [
+          "licenses・usage",
+          "cost center・budget・配賦"
+        ]
+      }
+    ],
+    "lab": "E:監査と予算の要件・測定・例外を設計する",
+    "review": "監査と予算の要件・測定・例外を設計する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Audit logs",
+      "Billing",
+      "Secure at scale"
+    ],
+    "feature_ids": [
+      "GH-AI-027",
+      "GH-AI-035",
+      "GH-AI-055",
+      "GH-AI-056"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 48,
+    "part": 11,
+    "title": "OSS・コミュニティ・GitHubの周辺機能",
+    "prerequisites": [
+      9,
+      15,
+      18,
+      21
+    ],
+    "objectives": [
+      "参加規範と支援制度を適切に利用できる"
+    ],
+    "sections": [
+      {
+        "number": "48.1",
+        "title": "参加",
+        "subsections": [
+          "community standards",
+          "CONTRIBUTING・license・moderation"
+        ]
+      },
+      {
+        "number": "48.2",
+        "title": "支援",
+        "subsections": [
+          "Sponsors・Education",
+          "Nonprofits・Skills",
+          "Learn"
+        ]
+      },
+      {
+        "number": "48.3",
+        "title": "周辺",
+        "subsections": [
+          "Gistの公開性",
+          "Support・Status・制度の資格"
+        ]
+      }
+    ],
+    "lab": "A:OSS参加方針とsecret Gistの注意を説明する",
+    "review": "OSS参加方針とsecret Gistの注意を説明する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "Community",
+      "Sponsors",
+      "Education",
+      "Support"
+    ],
+    "feature_ids": [
+      "GH-REP-047",
+      "GH-REP-048",
+      "GH-REP-049",
+      "GH-REP-050",
+      "GH-REP-051",
+      "GH-REP-052",
+      "GH-REP-053"
+    ],
+    "reused_feature_ids": []
+  },
+  {
+    "number": 49,
+    "part": 12,
+    "title": "個人開発・小規模チームの実務運用",
+    "prerequisites": [
+      13,
+      19,
+      20,
+      26,
+      29,
+      33,
+      34,
+      44
+    ],
+    "objectives": [
+      "複数機能を一貫した小規模開発へ統合できる"
+    ],
+    "sections": [
+      {
+        "number": "49.1",
+        "title": "起点",
+        "subsections": [
+          "要求・Issue・Projects",
+          "branch・PR・review"
+        ]
+      },
+      {
+        "number": "49.2",
+        "title": "自動化",
+        "subsections": [
+          "tests・Dependabot",
+          "release・配送"
+        ]
+      },
+      {
+        "number": "49.3",
+        "title": "保守",
+        "subsections": [
+          "通知・権限・費用",
+          "障害復旧・改善"
+        ]
+      }
+    ],
+    "lab": "A+B+C:小規模アプリの開発運用を第三者が再現する",
+    "review": "小規模アプリの開発運用を第三者が再現する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "各機能Docs",
+      "企業公開事例"
+    ],
+    "feature_ids": [],
+    "reused_feature_ids": [
+      "GH-REP-042",
+      "GH-REP-003",
+      "GH-REP-013",
+      "GH-COL-001",
+      "GH-COL-023",
+      "GH-COL-027",
+      "GH-COL-030",
+      "GH-COL-010",
+      "GH-ACT-001",
+      "GH-ACT-033",
+      "GH-ACT-052",
+      "GH-ACT-060",
+      "GH-AI-020",
+      "GH-AI-025",
+      "GH-AI-032"
+    ]
+  },
+  {
+    "number": 50,
+    "part": 12,
+    "title": "大規模開発・AI駆動開発の実務設計",
+    "prerequisites": [
+      32,
+      35,
+      39,
+      43,
+      47,
+      49
+    ],
+    "objectives": [
+      "統制と開発体験を両立する設計を評価できる"
+    ],
+    "sections": [
+      {
+        "number": "50.1",
+        "title": "基盤",
+        "subsections": [
+          "Enterprise・identity",
+          "標準CI・開発環境"
+        ]
+      },
+      {
+        "number": "50.2",
+        "title": "AI運用",
+        "subsections": [
+          "agent・MCP・review",
+          "人間承認・監査"
+        ]
+      },
+      {
+        "number": "50.3",
+        "title": "評価",
+        "subsections": [
+          "security・費用・生産性",
+          "例外・移行・残余リスク"
+        ]
+      }
+    ],
+    "lab": "D+E:仕様根拠と仮定を分けアーキテクチャを審査する",
+    "review": "仕様根拠と仮定を分けアーキテクチャを審査する。期待結果・失敗結果・権限/プラン条件を出典と照合し、未実施部分を区別する。",
+    "source_categories": [
+      "各機能Docs",
+      "企業事例",
+      "外部公式"
+    ],
+    "feature_ids": [],
+    "reused_feature_ids": [
+      "GH-AI-003",
+      "GH-AI-008",
+      "GH-AI-013",
+      "GH-AI-015",
+      "GH-AI-017",
+      "GH-AI-018",
+      "GH-AI-034",
+      "GH-AI-035",
+      "GH-AI-036",
+      "GH-AI-048",
+      "GH-AI-054",
+      "GH-AI-055",
+      "GH-ACT-014",
+      "GH-ACT-017",
+      "GH-ACT-019",
+      "GH-ACT-025",
+      "GH-ACT-037",
+      "GH-ACT-044",
+      "GH-ACT-049",
+      "GH-ACT-063"
+    ]
+  }
+]
